@@ -410,4 +410,39 @@ describe('when validating schema with an api server auth', () => {
     expect(exit).toHaveBeenCalledTimes(1);
     expect(exit).toHaveBeenCalledWith(1);
   });
+
+  it('then it should be valid if environmentBannerMessage is present', () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.environmentBannerMessage = 'This is the unit tests. Do not make changes here';
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(0);
+    expect(exit).toHaveBeenCalledTimes(0);
+  });
+
+  it('then it should be invalid if environmentBannerMessage is present but too short', () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.environmentBannerMessage = 'short';
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledWith(1);
+  });
+
+  it('then it should be invalid if environmentBannerMessage is present but too long', () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.environmentBannerMessage = 'this is a very long banner, with way tooooooooooooooo much content. It would just wrap in the UI and look terrible; so lets just not allow this';
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledWith(1);
+  });
 });
