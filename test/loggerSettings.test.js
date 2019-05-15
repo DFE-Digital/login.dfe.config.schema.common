@@ -6,6 +6,7 @@ const completeConfig = {
   loggerSettings: {
     logLevel: 'debug',
     applicationName: 'unit tests',
+    aiSendLiveMetrics: true,
     auditDb: {
       host: 'localhost',
       username: 'user-1',
@@ -105,6 +106,19 @@ describe('when validating a schema with logger settings', () => {
     expect(logger.error).toHaveBeenCalledTimes(1);
     expect(exit).toHaveBeenCalledTimes(1);
     expect(exit).toHaveBeenCalledWith(1);
+  });
+
+  it('then aiSendLiveMetrics should default to false if flag missing', () => {
+    const config = clone(completeConfig);
+    config.loggerSettings.aiSendLiveMetrics = undefined;
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(config.loggerSettings.aiSendLiveMetrics)
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(0);
+    expect(exit).toHaveBeenCalledTimes(0);
   });
 
   it('then it should be invalid with log level othat is not debug, info, warn or error', () => {
