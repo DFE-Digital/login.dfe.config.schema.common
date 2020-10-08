@@ -12,6 +12,7 @@ Common config schema components of DfE Sign-in
 4. hostingEnvironment - Environment settings for service
 5. loggerSettings - Settings for logging
 6. sequelizeConnection - Settings for sequelize connection
+7. assetSettings - Settings for static assets
 
 `patterns` is also exposed, which includes various common regex patterns
 
