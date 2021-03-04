@@ -27,7 +27,7 @@ const completeConfig = {
       timeout: 123,
       keepAliveTimeout: 123,
     },
-  }
+  },
 };
 const schema = new SimpleSchema({
   hostingEnvironment: common.schemas.hostingEnvironment,
@@ -414,6 +414,17 @@ describe('when validating schema with an api server auth', () => {
   it('then it should be valid if environmentBannerMessage is present', () => {
     const config = clone(completeConfig);
     config.hostingEnvironment.environmentBannerMessage = 'This is the unit tests. Do not make changes here';
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(0);
+    expect(exit).toHaveBeenCalledTimes(0);
+  });
+
+  it('then it should be valid if environmentBannerMessage is an empty string', () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.environmentBannerMessage = '';
 
     common.validateConfigAgainstSchema(config, schema, logger, exit);
 
