@@ -422,9 +422,9 @@ describe('when validating schema with an api server auth', () => {
     expect(exit).toHaveBeenCalledTimes(0);
   });
 
-  it('then it should be valid if environmentBannerMessage is an empty string', () => {
+  it('then it should be valid if environmentBannerMessage is a string with the value \'null\'', () => {
     const config = clone(completeConfig);
-    config.hostingEnvironment.environmentBannerMessage = '';
+    config.hostingEnvironment.environmentBannerMessage = 'null';
 
     common.validateConfigAgainstSchema(config, schema, logger, exit);
 
