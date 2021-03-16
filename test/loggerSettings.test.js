@@ -8,8 +8,8 @@ const completeConfig = {
     applicationName: 'unit tests',
     auditDb: {
       host: 'localhost',
-      username: 'user-1',
-      password: 'something-secret',
+      username: 'user-890a76f2-8932-4516-a933-28aea42b50f4',
+      password: 'ready-2f5b5d0f-7b31-4e1b-a23d-b5bab0620501',
       dialect: 'mssql',
       name: 'audit',
       encrypt: true,
