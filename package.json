@@ -25,7 +25,7 @@
     "eslint-plugin-import": "^2.7.0",
     "jest": "^25.0.0",
     "jest-cli": "^25.0.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   },
   "jest": {
     "testEnvironment": "node",
