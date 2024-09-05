@@ -18,6 +18,7 @@ const completeConfig = {
     interactionsUrl: 'https://interactions.unit.tests',
     profileUrl: 'https://profile.unit.tests',
     helpUrl: 'https://help.unit.tests',
+    helpAssistantUrl: 'https://help-assistant.unit.tests',
     servicesUrl: 'https://services.unit.tests',
     supportUrl: 'https://support.unit.tests',
     redisPingInSeconds: 15,
@@ -160,6 +161,16 @@ describe('when validating schema with an api server auth', () => {
     expect(exit).toHaveBeenCalledTimes(0);
   });
 
+  it('then it should be valid with helpAssistantUrl missing' , () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.helpAssistantUrl = undefined;
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(0);
+    expect(exit).toHaveBeenCalledTimes(0);
+  });
+
   it('then it should be valid with servicesUrl missing' , () => {
     const config = clone(completeConfig);
     config.hostingEnvironment.servicesUrl = undefined;
@@ -293,6 +304,18 @@ describe('when validating schema with an api server auth', () => {
   it('then it should be invalid if helpUrl is not a url' , () => {
     const config = clone(completeConfig);
     config.hostingEnvironment.helpUrl = 'not-a-url';
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledWith(1);
+  });
+
+  it('then it should be invalid if helpAssistantUrl is not a url' , () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.helpAssistantUrl = 'not-a-url';
 
     common.validateConfigAgainstSchema(config, schema, logger, exit);
 
