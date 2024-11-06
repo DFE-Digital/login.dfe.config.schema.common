@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.config.schema.common",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Common config schema components of DfE Sign-in",
   "main": "lib/index.js",
   "scripts": {
