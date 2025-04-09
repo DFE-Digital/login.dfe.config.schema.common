@@ -1,7 +1,6 @@
 const SimpleSchema = require("simpl-schema").default;
 const common = require("./../lib");
 const { getLogger, clone } = require("./utils");
-const pick = require("lodash/pick");
 
 const completeSecretConfig = {
   auth: {
