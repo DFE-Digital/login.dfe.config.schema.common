@@ -42,6 +42,7 @@ describe("when validating a schema with sequelize connection settings", () => {
 
   it("then it should be valid with host missing", () => {
     const config = clone(completeConfig);
+    const intentionalError = "ESLINT ERROR";
     config.database.host = undefined;
 
     common.validateConfigAgainstSchema(config, schema, logger, exit);
