@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.config.schema.common",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Common config schema components of DfE Sign-in",
   "main": "lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "lint:fix": "eslint . --fix",
     "lint:report": "eslint . -f junit -o eslint-results.xml",
     "format": "prettier . --write",
-    "test": "jest --runInBand --coverage",
+    "test": "jest --coverage",
     "test:report": "jest --coverage --reporters=default --reporters jest-junit --coverageReporters=clover",
     "prepare": "husky"
   },

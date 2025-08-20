@@ -15,6 +15,7 @@ const completeConfig = {
     applicationInsights: "some-ai-key",
     sessionCookieExpiryInMinutes: 60,
     gaTrackingId: "some-analytics-key",
+    accessibilityStatementUrl: "https://accessibility-statement-url.com",
     interactionsUrl: "https://interactions.unit.tests",
     profileUrl: "https://profile.unit.tests",
     helpUrl: "https://help.unit.tests",
@@ -267,6 +268,18 @@ describe("when validating schema with an api server auth", () => {
   it("then it should be invalid if sessionCookieExpiryInMinutes is not an integer number", () => {
     const config = clone(completeConfig);
     config.hostingEnvironment.sessionCookieExpiryInMinutes = 123.456;
+
+    common.validateConfigAgainstSchema(config, schema, logger, exit);
+
+    expect(logger.warn).toHaveBeenCalledTimes(0);
+    expect(logger.error).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledTimes(1);
+    expect(exit).toHaveBeenCalledWith(1);
+  });
+
+  it("then it should be invalid if interactionsUrl is not a url", () => {
+    const config = clone(completeConfig);
+    config.hostingEnvironment.accessibilityStatementUrl = "not-a-url";
 
     common.validateConfigAgainstSchema(config, schema, logger, exit);
 
