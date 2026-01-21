@@ -40,7 +40,7 @@
     "jest-cli": "^29.6.3",
     "jest-junit": "^16.0.0",
     "lint-staged": "^15.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.23",
     "prettier": "^3.5.3"
   },
   "jest": {
