@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.config.schema.common",
-  "version": "2.1.8",
+  "version": "2.1.9-prerelease",
   "description": "Common config schema components of DfE Sign-in",
   "main": "lib/index.js",
   "scripts": {
@@ -36,9 +36,9 @@
     "eslint-plugin-jest": "^28.11.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
-    "jest": "^29.6.3",
-    "jest-cli": "^29.6.3",
-    "jest-junit": "^16.0.0",
+    "jest": "^29.7.0",
+    "jest-cli": "^29.7.0",
+    "jest-junit": "^17.0.0",
     "lint-staged": "^15.5.0",
     "lodash": "^4.17.15",
     "prettier": "^3.5.3"
@@ -47,5 +47,9 @@
     "testEnvironment": "node",
     "collectCoverage": false,
     "clearMocks": true
+  },
+  "overrides": {
+    "deepmerge": "^4.3.1",
+    "uuid": "^11.1.1"
   }
 }
